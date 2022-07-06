@@ -922,7 +922,11 @@ function splitTree(root, point, options) {
         let nestSibling = ifHasNextSibling.nextSibling;
         let textNode;
         if (nestSibling.nodeType == 1) {
-            textNode = nestSibling.childNodes[0];
+            if (nestSibling.childNodes.length === 0) {
+              textNode = nestSibling;
+            } else {
+              textNode = nestSibling.childNodes[0];
+            }
             ancestors = listAncestor(textNode, func.eq(root));
             point = {
                 node: textNode,
